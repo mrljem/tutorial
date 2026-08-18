@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dfkbvwxr3kaur"]
+
+[ext_resource type="Script" uid="uid://h1v0g72aq557" path="res://scripts/arrow_dispenser.gd" id="1_iugp4"]
+[ext_resource type="Texture2D" uid="uid://q7np1x60xwcu" path="res://assets/sprites/weapons.png" id="1_ovgnp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1x4vd"]
+size = Vector2(16, 16)
+
+[node name="ArrowDispenser" type="StaticBody2D" unique_id=2130226531]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_iugp4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1695776052]
+texture = ExtResource("1_ovgnp")
+hframes = 4
+vframes = 4
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1123683247]
+shape = SubResource("RectangleShape2D_1x4vd")
+
+[node name="Timer" type="Timer" parent="." unique_id=943189585]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

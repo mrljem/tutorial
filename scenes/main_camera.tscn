@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cs0n66lv3wd7v"]
+
+[ext_resource type="Script" uid="uid://dybymnvolhwpb" path="res://scripts/main_camera.gd" id="1_yofrt"]
+[ext_resource type="PackedScene" uid="uid://hn04adq13v87" path="res://scenes/killzone.tscn" id="2_7dc62"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1x4vd"]
+size = Vector2(0.9722214, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3bji"]
+size = Vector2(10, 20)
+
+[node name="MainCamera" type="Camera2D" unique_id=1616991347]
+zoom = Vector2(4, 4)
+script = ExtResource("1_yofrt")
+
+[node name="Killzone" parent="." unique_id=1381488121 instance=ExtResource("2_7dc62")]
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Killzone" unique_id=1516499546]
+position = Vector2(0, 99)
+scale = Vector2(355.51352, -0.63851017)
+shape = SubResource("RectangleShape2D_1x4vd")
+
+[node name="Area2D" type="Node2D" parent="." unique_id=1623983548]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Area2D" unique_id=977578222]
+position = Vector2(-150, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBody2D" unique_id=1465170707]
+scale = Vector2(1, 8.16)
+shape = SubResource("RectangleShape2D_s3bji")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Area2D" unique_id=66293782]
+position = Vector2(150, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBody2D2" unique_id=1061174158]
+scale = Vector2(1, 8.16)
+shape = SubResource("RectangleShape2D_s3bji")
