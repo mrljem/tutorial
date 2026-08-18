@@ -9,8 +9,12 @@ size = Vector2(0.9722214, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s3bji"]
 size = Vector2(10, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f14r7"]
+size = Vector2(20, 7.9999924)
+
 [node name="MainCamera" type="Camera2D" unique_id=1616991347]
-zoom = Vector2(4, 4)
+zoom = Vector2(3.5, 3.5)
+position_smoothing_enabled = true
 script = ExtResource("1_yofrt")
 
 [node name="Killzone" parent="." unique_id=1381488121 instance=ExtResource("2_7dc62")]
@@ -20,18 +24,29 @@ position = Vector2(0, 99)
 scale = Vector2(355.51352, -0.63851017)
 shape = SubResource("RectangleShape2D_1x4vd")
 
-[node name="Area2D" type="Node2D" parent="." unique_id=1623983548]
+[node name="BorderCollision" type="Node2D" parent="." unique_id=1623983548]
+scale = Vector2(1.14, 1)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Area2D" unique_id=977578222]
+[node name="StaticBody2D" type="StaticBody2D" parent="BorderCollision" unique_id=977578222]
 position = Vector2(-150, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBody2D" unique_id=1465170707]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderCollision/StaticBody2D" unique_id=1465170707]
 scale = Vector2(1, 8.16)
 shape = SubResource("RectangleShape2D_s3bji")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="Area2D" unique_id=66293782]
+[node name="StaticBody2D2" type="StaticBody2D" parent="BorderCollision" unique_id=66293782]
 position = Vector2(150, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBody2D2" unique_id=1061174158]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderCollision/StaticBody2D2" unique_id=1061174158]
 scale = Vector2(1, 8.16)
 shape = SubResource("RectangleShape2D_s3bji")
+
+[node name="TopArea" type="Area2D" parent="." unique_id=813130100]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopArea" unique_id=2047975803]
+position = Vector2(0, -87)
+scale = Vector2(14.360002, 1)
+shape = SubResource("RectangleShape2D_f14r7")
+
+[connection signal="body_entered" from="TopArea" to="." method="_on_top_area_body_entered"]
