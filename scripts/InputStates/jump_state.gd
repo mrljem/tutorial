@@ -23,9 +23,9 @@ func physics_update(delta: float) -> void:
 	var character := state_machine.get_parent() as CharacterBody2D
 	var direction := Input.get_axis("move_left", "move_right")
 	
-	if direction < 0:
+	if direction == -1:
 		state_machine.animated_sprite_2d.flip_h = true
-	else:
+	elif direction == 1:
 		state_machine.animated_sprite_2d.flip_h = false
 	
 	character.velocity.x = direction * JUMP_SPEED

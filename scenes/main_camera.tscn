@@ -18,6 +18,7 @@ position_smoothing_enabled = true
 script = ExtResource("1_yofrt")
 
 [node name="Killzone" parent="." unique_id=1381488121 instance=ExtResource("2_7dc62")]
+position = Vector2(0, 14)
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Killzone" unique_id=1516499546]
 position = Vector2(0, 99)
