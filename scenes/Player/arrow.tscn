@@ -1,27 +1,31 @@
 [gd_scene format=3 uid="uid://d4dgbnawxqkk0"]
 
-[ext_resource type="Script" uid="uid://v4at50aieoac" path="res://scripts/arrow.gd" id="1_23jat"]
-[ext_resource type="Texture2D" uid="uid://q7np1x60xwcu" path="res://assets/sprites/weapons.png" id="1_umosx"]
+[ext_resource type="Script" uid="uid://v4at50aieoac" path="res://scripts/arrow.gd" id="1_iybps"]
+[ext_resource type="Texture2D" uid="uid://q7np1x60xwcu" path="res://assets/sprites/weapons.png" id="2_lrbb7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_23jat"]
 
 [node name="Arrow" type="RigidBody2D" unique_id=1415184852]
-collision_layer = 4
+collision_layer = 6
 collision_mask = 257
 contact_monitor = true
 max_contacts_reported = 1
-script = ExtResource("1_23jat")
+script = ExtResource("1_iybps")
+
+[node name="Timer" type="Timer" parent="." unique_id=1967995713]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1358107580]
-position = Vector2(0, -1.4210855e-14)
+position = Vector2(0, -8.4703295e-22)
 scale = Vector2(1.140625, 0.875)
-texture = ExtResource("1_umosx")
+texture = ExtResource("2_lrbb7")
+flip_h = true
 hframes = 4
 vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1452814530]
-position = Vector2(0.57, -0.463)
+position = Vector2(-0.9999998, -0.463)
 scale = Vector2(0.741, 0.128)
 shape = SubResource("CapsuleShape2D_23jat")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

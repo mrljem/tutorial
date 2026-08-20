@@ -1,14 +1,12 @@
-class_name ArrowScene
+class_name Arrow
 
 extends RigidBody2D
 @export var max_damage: int = 100
 @onready var arrow: RigidBody2D = $"."
 
-var canDamage: bool = true
 var didHit: bool = false
+@onready var timer: Timer = $Timer
 
-func _ready() -> void:
-	gravity_scale = 0
 
 func _physics_process(delta: float) -> void:
 	if not didHit:
@@ -17,14 +15,24 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node) -> void:
 	if didHit:
 		return
-	gravity_scale = 1
-	var health = body.get_node_or_null(Constants.HEALTH_COMPONENT) as HealthComponent
 	
-	if health && canDamage:
-		health.removeHealth(1)
-	
-	canDamage = false
+	timer.start(2)
 	didHit = true
 	
-func shoot(velocity: Vector2) -> void:
-	apply_impulse(velocity)
+	
+	var health = body.get_node_or_null(Constants.HEALTH_COMPONENT) as HealthComponent
+	
+	if health:
+		queue_free()
+		_onHealthHit(health)
+	print("Before:", global_position)
+
+	
+
+func _onHealthHit(healthComponent: HealthComponent) -> void:
+	healthComponent.removeHealth(max_damage)
+	healthComponent.get_parent().queue_free()
+
+
+func _on_timer_timeout() -> void:
+	queue_free()

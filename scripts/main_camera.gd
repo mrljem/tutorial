@@ -10,6 +10,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	position.y -= cameraSpeed * delta
+	position.x = player.position.x
 
 
 func _on_top_area_body_entered(body: Node2D) -> void:

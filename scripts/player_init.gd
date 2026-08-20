@@ -1,20 +1,25 @@
 extends CharacterBody2D
 
-var ARROW_SCENE = preload("res://scenes/arrow.tscn")
+var ARROW_SCENE = preload("res://scenes/Player/arrow.tscn")
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@export var arrow_velocity: float = 5
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		
 	if Input.is_action_just_pressed("attack"):
-		var arrow: ArrowScene = ARROW_SCENE.instantiate()
+		var arrow: Arrow = ARROW_SCENE.instantiate()
 		get_parent().add_child(arrow)
+		
 		arrow.global_position = global_position
 		
-		var direction = -1 if animated_sprite_2d.flip_h  else 1
-		arrow.rotation = 0 if animated_sprite_2d.flip_h else PI
+		var direction: Vector2 = (get_global_mouse_position() - arrow.global_position).normalized()
 		
-		arrow.shoot(Vector2(direction * 400, 0))
-		
+		arrow.rotation = direction.angle()
+		shoot(arrow, direction * arrow_velocity)
+	
 	move_and_slide()
+
+func shoot(arrow: RigidBody2D, arrowVelocity: Vector2) -> void:
+	arrow.apply_central_impulse(arrowVelocity)

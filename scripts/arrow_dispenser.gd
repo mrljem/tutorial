@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 @onready var arrow_dispenser: StaticBody2D = $"."
-const arrow_scene = preload("res://scenes/arrow.tscn")
+const arrow_scene = preload("res://scenes/Player/arrow.tscn")
 @onready var timer: Timer = $Timer
 
 @export var numberOfArrows: int = 1

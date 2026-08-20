@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cs0n66lv3wd7v"]
 
 [ext_resource type="Script" uid="uid://dybymnvolhwpb" path="res://scripts/main_camera.gd" id="1_yofrt"]
-[ext_resource type="PackedScene" uid="uid://hn04adq13v87" path="res://scenes/killzone.tscn" id="2_7dc62"]
+[ext_resource type="PackedScene" uid="uid://hn04adq13v87" path="res://scenes/Common/killzone.tscn" id="2_7dc62"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1x4vd"]
 size = Vector2(0.9722214, 20)
